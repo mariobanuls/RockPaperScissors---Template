@@ -190,6 +190,7 @@
             this.Controls.Add(this.chooseLabel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rock Paper Scissors";
             ((System.ComponentModel.ISupportInitialize)(this.cpuImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerImage)).EndInit();

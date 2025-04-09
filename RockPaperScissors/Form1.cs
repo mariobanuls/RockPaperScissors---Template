@@ -42,22 +42,111 @@ namespace RockPaperScissors
         public Form1()
         {
             InitializeComponent();
+            
         }
 
+
+        //makes the players choice be rock and runs the rest methods
+        //it also sets the image to rock
         private void rockButton_Click(object sender, EventArgs e)
         {
-            /// TODO Set the playerchoice value, show the appropriate image,
-            /// play a sound, wait for a second; repeat for the computer turn 
+            playerChoice = "rock";
+            playerImage.BackgroundImage = rockImage;
+            CpuTurn();
+            CalculateResult();
+            gongPlayer.Play();
+            DelayDelete();
         }
 
+
+        //makes the players choice be paper and runs the rest methods
+        //it also sets the image to paper
         private void paperButton_Click(object sender, EventArgs e)
         {
-
+            playerChoice = "paper";
+            playerImage.BackgroundImage = paperImage;
+            CpuTurn();
+            CalculateResult();
+            gongPlayer.Play();
+            DelayDelete();
         }
 
+
+        //makes the players choice be scissors and runs the rest methods
+        //it also sets the image to scissor
         private void scissorsButton_Click(object sender, EventArgs e)
         {
-
+            playerChoice = "scissor";
+            playerImage.BackgroundImage = scissorImage;
+            CpuTurn();
+            CalculateResult();
+            Refresh();
+            DelayDelete();
         }
+
+
+        //generates a random decision that will be the cpu's choice
+        private void CpuTurn()
+        {
+            int randValue = randGen.Next(1, 4);
+            if (randValue == 1)
+            {
+                cpuImage.BackgroundImage = rockImage;
+                cpuChoice = "rock";
+            }
+            else if (randValue == 2)
+            {
+                cpuImage.BackgroundImage = paperImage;
+                cpuChoice = "paper";
+            }
+            else
+            {
+                cpuImage.BackgroundImage = scissorImage;
+                cpuChoice = "scissor";
+            }
+        }
+
+
+        //decides the winner depending on the player's and cpu's choices. 
+        //changes the images and updates the scoreboard
+        private void CalculateResult()
+        {
+
+            if  (((cpuChoice == "rock") && (playerChoice == "paper")) || ((cpuChoice == "paper") && (playerChoice == "scissor")) || ((cpuChoice == "scissor") && (playerChoice == "rock")))
+            {
+                wins++;
+                resultImage.BackgroundImage = winImage;
+                winsLabel.Text = $"Wins: {wins}";
+            }
+            else if (cpuChoice == playerChoice)
+            {
+                ties++;
+                resultImage.BackgroundImage = tieImage;
+                tiesLabel.Text = $"Ties: {ties}";
+            }
+            else 
+            {
+                losses++;
+                resultImage.BackgroundImage = loseImage;
+                lossesLabel.Text = $"Losses: {losses}";
+            }
+            
+        }
+
+
+        //waits for a while and resets the images
+        private void DelayDelete()
+        {
+            Refresh();
+            Thread.Sleep(outcomePause);
+            resultImage.BackgroundImage = null;
+            cpuImage.BackgroundImage = null;
+            playerImage.BackgroundImage = null;
+        }
+        
+
+
+
+
     }
 }

@@ -104,7 +104,7 @@ namespace RockPaperScissors
                 cpuImage.BackgroundImage = scissorImage;
                 cpuChoice = "scissor";
             }
-        }
+        } 
 
 
         //decides the winner depending on the player's and cpu's choices. 
